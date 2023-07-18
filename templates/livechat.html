@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block video-uploads %}
+
+<body>
+    
+    <style>
+        body{
+            margin-top: 50px;
+        }
+        .houses H1{
+            color: rgb(255, 254, 254);
+            font-size: 20px;
+            padding: 10px;
+        }
+        .houses form{
+            margin-top: -80px;
+        }
+        .houses form input{
+            color: var(--bg-black-100);
+            height: 60px;
+            width: 100%;
+        }
+        .houses form textarea{
+            color: var(--bg-black-100);
+            height: 400px;
+            width: 100%;
+        }
+
+    </style>
+   
+    {% for message in messages %}
+    <h5>message{{ message }}</h5>
+    {% endfor %}
+   
+    <div class="houses">
+        
+       <h1>THIS PAGE IS UNDER REDESIGN PROCESS. SORRY FOR ANY INCONVINIENCE</h1>
+    </div>
+    <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'nav.js' %}"></script>
+    <script src="{% static 'style-switcher.js' %}"></script>
+</body>
+{% endblock %}

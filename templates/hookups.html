@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block socialbook %}            
+<body>
+    <style>
+       
+        .main-section{
+            margin-top: 90px;
+        }
+        .aside_profile{
+            margin-top: 100px;
+        }
+        .product-box{
+            height: 350px;
+            max-width: 350px;
+            width: 95%;
+            overflow: scroll;
+            margin: 10px;
+        }
+        
+        .profile-box{
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            background-color: var(--bg-black-50);
+            line-height: 1.5;
+            overflow: hidden;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .profile-box img{
+            border-radius: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        h4{
+            color: var(--skin-color);
+            font-weight: 600;
+        }
+        
+        label{
+            font-size: 14px;
+            color: var(--text-color-700);
+        }
+        h2{
+            font-weight: 600px;
+            font-size: 16px;
+            border: none;
+            margin-top: 20px;
+        }
+        .profile-pic{
+            width: 60%;
+            display: inline-block;
+        }
+        .connect1{
+            width: 30%;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+        }
+        .connect1 h2{
+            background-color: var(--skin-color);
+            color: var(--text-color-700);
+            border-radius: 5px;
+            padding: 8px;
+            font-weight: 600;
+        }
+        .connect1 h2:hover{
+            background-color: var(--skin-color);
+            color: blue;
+            border-radius: 5px;
+            padding: 8px;
+            font-weight: 600;
+        }
+
+        </style>
+    
+    
+<div class="main-section" id="houses">
+    {% for post in user_profiles reversed %}
+    
+        <div class="product-box">
+            <div class="profile-box">
+            <label><h4>Name </h4> {{post.agentname}}</label><br>
+                <div></a>
+                    <div class="profile-pic">
+                        <a href="/socialbook/{{post.agentname}}"><img src="{{post.profileimg.url}}" height="230px" width="100%"/></a>
+                    </div>
+                    <div class="connect1">
+                    <a href="/socialbook/{{post.agentname}}"><h2>FOLLOW</h2></a>
+                    <a href="/socialbook/{{post.agentname}}"><h2>MESSAGE</h2></a>
+                    </div>
+                </div>
+            <label><h4> ABOUT {{post.agentname}} </h4></label><br>
+            <label>{{post.bio}}</label><br>
+            <label><h4> Located in</h4></label>&nbsp;<label> {{ post.location }}</label><br>
+            
+            </div>
+        </div>
+
+    {% endfor %}
+        </div>
+</body>
+{% endblock %}
+      

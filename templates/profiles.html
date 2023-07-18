@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" lang="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenyansonline.com</title>
+    <link rel="stylesheet" href="{% static 'styl.css' %}"/>
+    <link rel="stylesheet" href="{% static 'account.css' %}"/>
+    <link rel="stylesheet" href="{% static 'color.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style-switcher.css' %}"/>
+    <link rel="stylesheet" href="{% static 'color2.css' %}" class="alternate-style" title="color-1" disabled>
+    <link rel="stylesheet" href="{% static 'color3.css' %}" class="alternate-style" title="color-2" disabled>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<nav class="navigation">
+    <div id="topnav" >
+        <div class="navbar">
+            <a  href="/" ><div class="navlogo"> <h3>Kenyans</h3><h4>Online</h4> <h1>K O</h1></div></a>
+        </div>
+   
+       </div>  
+    <div id="smallnav">   
+        
+        <a id="adds" href="/acc-profile"><img src="{{user_profile.profileimg.url}}" height="22px" width="22px">PROFILE</a>
+        
+        <button id="linkbtn"><i class="fa fa-share-alt-square" aria-hidden="true"></i></button>
+        <div class="style-switcher">
+            <div class="style-switcher-toggle s-icon">
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="day-night s-icon">
+                <i class="fa fa-sun-o"></i>
+            </div>
+            
+            <h4>Theme Selector</h4>
+            <div class="colors">
+                <span class="color-2" onclick="setActiveStyle('color-1')"></span>
+                <span class="color-3" onclick="setActiveStyle('color-2')"></span>
+                <span class="color-1" onclick="setActiveStyle('color-3')"></span>
+            </div>
+        </div>  
+        <br><br>
+        <form method="POST" action="/search">
+            {% csrf_token %}
+            <input type="search" action="/search" class="search" placeholder="search" name="searched"><button type="submit" class="searchbutton"><i class="fa fa-search" font-size="18px"></i></button>      
+        </form> 
+    </div>
+     
+    <div id="nav1">
+            <div class="navlinks">
+                <a href="/">All-Videos</a>&nbsp;
+                <a href="/recommended">Recommended</a>&nbsp;
+          
+            
+                <a href="/trending">Trending</a>&nbsp;
+                <a href="/podcasts">Podcasts</a>&nbsp;
+
+                <a href="/livechat">Live</a>&nbsp;
+                <a href="/blogs">Blogs</a>&nbsp;
+
+                <a href="/livechat">STATUS</a>&nbsp;
+            
+            
+                <a href="/hookup">Social-book</a>&nbsp;
+           
+                <a href="/shotss">Shots</a>
+                <a href="/terms-policy">Privacy</a>
+                
+                <a id="adds" href="/acc-profile"><img src="{{user_profile.profileimg.url}}" height="22px" width="22px">PROFILE</a>&nbsp;
+                
+
+                <button id="linkbtn"><i class="fa fa-share-alt-square" aria-hidden="true"></i></button>
+                <div class="style-switcher">
+                    <div class="style-switcher-toggle s-icon">
+                        <i class="fa fa-cog"></i>
+                    </div>
+                    <div class="day-night s-icon">
+                        <i class="fa fa-sun-o"></i>
+                    </div>
+                    
+                    <h4>Theme Selector</h4>
+                    <div class="colors">
+                        <span class="color-2" onclick="setActiveStyle('color-1')"></span>
+                        <span class="color-3" onclick="setActiveStyle('color-2')"></span>
+                        <span class="color-1" onclick="setActiveStyle('color-3')"></span>
+                    </div>
+                </div>  
+            </div>
+             <div class="searching"> <form method="POST" action="/search">
+                {% csrf_token %}
+                    <input type="search" action="/search" class="search" placeholder="search" name="searched"><button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>      
+                </form> 
+            </div>  
+    </div> 
+        
+    
+    <label>
+    <a href="logout" height="40px"><i class="fa fa-sign-out" id="btnn">out</i></a>
+    </label>
+
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fa fa-bars" id="btn"></i>
+        <i class="fa fa-times" id="cancel"></i>
+    </label>
+
+<div class="sidebar">
+    
+
+    <header class="navbar"><h3>Kenyans</h3><h4>Online</h4></header>
+
+    <ul>
+        <li><a href="/" ><i class="fa fa-home"></i> All-Videos</a></li>
+        <li><a href="/recommended" ><i class="fa fa-home"></i> Recommended</a></li>
+        <li><a href="/trending" ><i class="fa fa-home"></i> Trending</a></li>
+        <li><a href="/podcast" ><i class="fa fa-home"></i> Podcasts</a></li>
+        <li><a href="/livechat"><i class="fa fa-comments"></i>Live</a></li>
+        <li><a href="/blog"><i class="fa fa-comments"></i>Blogs</a></li>
+        <li><a href="/livechat"><i class="fa fa-comments"></i>STATUS</a></li>
+        <li><a href="/hookup" ><i class="fa fa-address-card"></i> Social-book</a></li>
+        <li><a href="/shotss" ><i class="fa fa-camera-retro"></i> Shots</a></li>
+        <li><a href="/acc-profile"><i class="fa fa-user-circle-o"></i> Profile</a></li>
+        <li><a href="/terms-policy"><i class="fa fa-fa fa-eye-slash"></i> privacy policy</a></li>
+    </ul>
+</div> 
+</nav>
+
+
+<body>
+    <style>
+        body{
+            padding-top: 50px;
+        }
+        h5{
+            color: rgba(240, 248, 255, 0.712);
+            display: inline;
+        }
+       
+        .product-box{
+            background-color: rgb(12, 12, 32);
+            width: 95%;
+            border: 1px solid grey;
+            padding-bottom: 10px;
+        }
+        .product-box a:hover{
+            color: rgb(255, 15, 7);
+        }
+        p{
+            color: rgba(255, 255, 255, 0.897);
+            font-weight: 100;
+        }
+        .videos-text{
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+        .videos-text a{
+            margin-left: 3px;
+            color: rgba(250, 246, 245, 0.692);
+            font-size: 14px;
+            font-weight: 100;
+        }
+        .videos-text a:hover{
+            margin: 10px;
+            color: rgb(255, 251, 0);
+        }
+        .videodetails{
+            height: 40px;
+            overflow: hidden;
+        }
+        .sidebar{
+            margin-top:10px;
+            text-align: left;
+        }
+        #adds img{
+            border-radius: 5px;
+        }
+        .navlogo h1{
+        font-size: 30px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-style: oblique;
+        color: #ff3e0e;
+        }
+        h1{
+        font-size: 16px;
+        font-weight: 700;
+        background-color: rgb(19, 92, 1);
+        border-radius: 10px;
+    }
+    </style>
+<section class="container">
+    
+    <h2>{{ user.username }}</h2>
+    {% if request.user != user %}
+      {% if request.user not in user.friend_requests_sent.all %}
+        <form action="{% url 'accounts:send_friend_request' user.id %}" method="post">
+                 {% csrf_token %}
+          <input type="submit" value="Add Friend">
+        </form>
+      {% else %}
+        <p>Friend Request Sent (pending)</p>
+      {% endif %}
+    {% endif %}    
+
+
+</section>
+<footer>
+    
+    <div id="copywrite">
+    <p>UPLOAD VIDEOS AND EARN Ksh.50 PER VIEW</p>
+    <p>&copy HoneyPot
+    </p>
+    </div>
+
+</footer>
+<script src="{% static 'nav.js' %}"></script>
+<script src="{% static 'main.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" lang="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenyansonline.com</title>
+    <link rel="stylesheet" href="{% static 'styl.css' %}"/>
+    <link rel="stylesheet" href="{% static 'account.css' %}"/>
+    <link rel="stylesheet" href="{% static 'color.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style-switcher.css' %}"/>
+    <link rel="stylesheet" href="{% static 'color2.css' %}" class="alternate-style" title="color-1" disabled>
+    <link rel="stylesheet" href="{% static 'color3.css' %}" class="alternate-style" title="color-2" disabled>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<nav class="navigation">
+    <div id="topnav">
+        <div class="navbar">
+            <a  href="/"><div class="navlogo"> <h3>Kenyans</h3><h4>Online</h4> <h1>K O</h1></div></a>
+        </div>
+   
+       </div>  
+    <div id="smallnav">   
+        
+        <a id="adds" href="/acc-profile"><img src="{{user_profile.profileimg.url}}" height="25px" width="25px"></a>
+       
+
+        
+        <br><br>
+        <form method="POST" action="/search">
+            {% csrf_token %}
+            <input type="search" action="/search" class="search" placeholder="search" name="searched"><button type="submit" class="searchbutton"><i class="fa fa-search" font-size="18px"></i></button>      
+        </form> 
+    </div>
+     
+    <div id="nav1">
+            <div class="navlinks">
+                <a href="/">All-Videos</a>&nbsp;
+                <a href="/recommended">Recommended</a>&nbsp;
+          
+            
+                <a href="/trending">Trending</a>&nbsp;
+                <a href="/podcasts">Podcasts</a>&nbsp;
+                <a href="/blogs">Blogs</a>&nbsp;
+                <a href="/livechat">LIVE</a>&nbsp;
+                <a href="/hookup">Social-book</a>&nbsp;
+                <a href="/livechat">STATUS</a>&nbsp;
+                <a href="/shotss">Shots</a>
+                <a href="/terms-policy">Privacy</a>
+                
+                <a id="adds" href="/acc-profile"><img src="{{user_profile.profileimg.url}}" height="22px" width="22px">PROFILE</a>
+               
+
+                
+                
+            </div>
+             <div class="searching"> <form method="POST" action="/search">
+                {% csrf_token %}
+                    <input type="search" action="/search" class="search" placeholder="search" name="searched"><button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>      
+                </form> 
+            </div>  
+    </div> 
+    <button id="linkbtn"><i class="fa fa-share-alt-square" aria-hidden="true"></i></button>  
+    <div class="style-switcher">
+        <div class="style-switcher-toggle s-icon">
+            <i class="fa fa-cog"></i>
+        </div>
+        <div class="day-night s-icon">
+            <i class="fa fa-sun-o"></i>
+        </div>
+        
+        <h4>Theme Selector</h4>
+        <div class="colors">
+            <span class="color-2" onclick="setActiveStyle('color-1')"></span>
+            <span class="color-3" onclick="setActiveStyle('color-2')"></span>
+            <span class="color-1" onclick="setActiveStyle('color-3')"></span>
+        </div>
+    </div>  
+    <label>
+    <a height="40px"><i class="fa fa-sign-out" id="btnn">out</i></a>
+    </label>
+
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fa fa-bars" id="btn"></i>
+        <i class="fa fa-times" id="cancel"></i>
+    </label>
+
+<div class="sidebar">
+    
+
+    <header class="navbar"><h3>Kenyans</h3><h4>Online</h4></header>
+
+    <ul>
+        <li><a href="/" ><i class="fa fa-home"></i> All-Videos</a></li>
+        <li><a href="/recommended" ><i class="fa fa-home"></i> Recommended</a></li>
+        <li><a href="/trending" ><i class="fa fa-home"></i> Trending</a></li>
+        <li><a href="/podcast" ><i class="fa fa-home"></i> Podcasts</a></li>
+        <li><a href="/blog"><i class="fa fa-comments"></i>Blogs</a></li>
+        <li><a href="/livechat"><i class="fa fa-comments"></i>LIVE</a></li>
+        <li><a href="/hookup" ><i class="fa fa-address-card"></i> Social-book</a></li>
+        <li><a href="/livechat"><i class="fa fa-comments"></i>STATUS</a></li>
+        <li><a href="/shotss" ><i class="fa fa-camera-retro"></i> Shots</a></li>
+        <li><a href="/acc-profile"><i class="fa fa-user-circle-o"></i> Profile</a></li>
+        <li><a href="/terms-policy"><i class="fa fa-fa fa-eye-slash"></i> privacy policy</a></li>
+    </ul>
+</div> 
+</nav>
+
+<body>
+    <style>
+        body{
+            padding-top: 50px;
+        }
+        section{
+            margin-top: 40px;
+            width: 75%;
+            float: right;
+        }
+        h5{
+            color: rgba(240, 248, 255, 0.712);
+            display: inline;
+        }
+       
+        
+        p{
+            color: var(--text-black-700);
+            font-weight: 100;
+            line-height: 1.5;
+        }
+        
+        .sidebar{
+            margin-top:10px;
+            text-align: left;
+        }
+        #adds img{
+            border-radius: 10px;
+        }
+        .navlogo h1{
+        font-size: 30px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-style: oblique;
+        color: #ff3e0e;
+        }
+        .profile-pictures{
+            text-align: center;
+        }
+        .profile-pictures img{
+            border-radius: 10px;
+            width: 300px;
+            height: 350px;
+            margin: 10px, auto;
+            margin-top: 10px;   
+        }
+        @media (max-width:900px) {
+            section{
+                width: 100%;
+            }
+        }
+        @media (max-width:400px) {
+            .profile-pictures img{
+            border-radius: 10px;
+            width: 100%;
+            height: 400px;
+            margin: 10px;
+            margin-top: 10px;
+        }
+        }
+    </style>
+<div class="aside_profile">
+    <div class="account-form">
+        
+            <div id="agentdata">
+            <label><h4>Username: </h4>{{profile.agentname}}</label><br>
+            <div class="wallpaper">
+            <img src="{{profile.profileimg.url}}"/>
+            </div>
+            </div>
+            <div id="agentdetails">
+            <label><h4>Located in {{profile.location}}</h4><br>
+            </div>
+       
+   <div class="account-details">
+        <div>
+            <form action="/following" method="POST">
+                {% csrf_token %}
+
+                <input type="hidden" value="{{user.username}}" name="follower"/>
+                <input type="hidden" value="{{user_object.username}}" name="user"/>
+
+                {% if user_object.username == user.username %}
+                <input type="submit" value="{{button_text}}">
+                {% else %}
+                <input type="submit" value="{{button_text}}">
+                {% endif %}
+            </form>
+            <a href="/Shot"><h4>SEND MESSAGE</h4></a><br>
+            <a href="/Shot"><h4>SEND GIFTS</h4></a>
+
+        </div>
+
+   </div>
+</div>
+</div>
+<section class="container">
+<div> Followers: {{user_followers}} PEOPLE<br>
+    <label><h4> ABOUT {{profile.agentname}}</h4></label><br>
+            <p>{{profile.bio}}</p>
+            <div class="profile-pictures">
+            <img src="{{user_profile.main_img3.url}}" />
+            <img src="{{user_profile.main_img1.url}}" />
+            <img src="{{user_profile.main_img2.url}}" />
+            <img src="{{user_profile.main_img4.url}}" />
+            <img src="{{user_profile.main_img5.url}}" />
+            <img src="{{user_profile.main_img6.url}}" />
+            </div>
+    <div>
+       
+    </div>
+       
+   
+</div>
+
+</section>
+
+<footer>
+    
+    <div id="copywrite"> 
+        
+        <div class="text">   
+        <p>UPLOAD VIDEOS/PODCAST/BLOGS AND EARN Ksh 300 PER 1000 VIEWs</p>
+        <p>ALL VIDEOS ARE ALLOWED EXCEPT NUDITY AND EXTREAMISM!!!</p>
+        <p>&copy TalantaHella</p>
+        
+        </div> 
+       
+    </div>
+
+</footer>
+<script src="{% static 'nav.js' %}"></script>
+<script src="{% static 'main.js' %}"></script>
+<script src="{% static 'style-switcher.js' %}"></script>
+
+</body>
+
+</html>

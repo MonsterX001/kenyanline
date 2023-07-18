@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block searches %}
+
+<body>
+    <style>
+        body{
+            padding-top: 50px;
+        }
+        .main-section{
+            padding-top: 20px;
+        }
+        h5{
+            color: var(--text-color-700);
+            display: inline;
+        }
+        .product-box{
+            background-color: var(--bg-color-50);
+            width: 95%;
+            padding-bottom: 10px;
+        }
+       
+        .product-box a{
+            color: var(--text-color-700);
+        }
+        .product-box a:hover{
+            color: green;
+        }
+        p{
+            color: var(--text-color-700);
+        }
+        .videos-text{
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .videos-text a{
+            margin-left: 3px;
+            color: var(--text-color-700);
+            font-size: 14px;
+            font-weight: 200;
+        }
+        .videos-text a:hover{
+            margin: 10px;
+            color: rgb(4, 0, 255);
+        }
+        .videodetails{
+            height: 40px;
+            overflow: hidden;
+        }
+        .sidebar{
+            margin-top:10px;
+            text-align: left;
+        }
+        .product-box{
+            height: 350px;
+            max-width: 350px;
+            width: 95%;
+            overflow: scroll;
+            margin: 10px;
+        }
+        
+        .profile-box{
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            background-color: var(--bg-black-50);
+            line-height: 1.5;
+            overflow: hidden;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .profile-box img{
+            border-radius: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        h4{
+            color: var(--skin-color);
+            font-weight: 600;
+        }
+        
+        label{
+            font-size: 14px;
+            color: var(--text-color-700);
+        }
+        h2{
+            font-weight: 600px;
+            font-size: 16px;
+            color: var(--skin-color);
+            border: none;
+            margin-top: 20px;
+        }
+        .profile-pic{
+            width: 60%;
+            display: inline-block;
+        }
+        .connect1{
+            width: 30%;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+        }
+        .connect1 h2{
+            background-color: var(--skin-color);
+            color: var(--text-color-700);
+            border-radius: 5px;
+            padding: 8px;
+            font-weight: 600;
+        }
+        .product-box{
+        padding: 1px;
+        height: 350px;
+        width: 97%;
+        margin: 10px;
+        overflow: hidden;
+        }
+        .product-box img{
+            padding: 1px;
+            height: 60%;
+        }
+    </style>
+
+
+<div class="main-section">   
+    {% if searched %}
+    <h2>Search Results for "{{ searched }}"</h2>
+    {% endif %}
+    {% if no_results_message %}
+    <p>{{ no_results_message }}</p>
+    {% endif %}
+
+        {% for post in videos %}
+        <div class="product-box">
+                
+            <a href="video_play/{{post.id}} "><video src="{{post.main_img.url}}" controls="controls" height="70%" width="100%" alt="product-img" class="product-img"><br>
+                </video></a>
+                <div class="videos-text">
+                <div class="videodetails"><p><h4>Video:</h4><h5> {{post.details|truncatewords:7}}</h5></p></div>
+                <p><h4>User:</h4> <a href="/profile/{{post.user}}">{{post.user}}</a> <h4>Views: </h4><h5>{{post.no_of_views}} </h5><h4><br> Posted: </h4><h5>{{post.created_at|timesince}} ago</h5></p>
+                </div>
+            </div>
+        {% endfor %}
+    
+   
+        {% for post in videosone reversed %}
+    
+        <div class="product-box">
+            
+        <a href="/podcast_play/{{post.id}}"><video src="{{post.main_img.url}}" controls="controls" height="70%" width="100%" alt="product-img" class="product-img"><br>
+            </video></a>
+            <div class="videos-text">
+            <div class="videodetails"><h4>Podcast:</h4><h5> {{post.details|truncatewords:15}}</h5></div>
+            <p><h4>User:</h4> <a href="/profile/{{post.user}}">{{post.user}}</a> <h4>Views: </h4><h5>{{post.no_of_views}} </h5><h4><br> Posted: </h4><h5>{{post.created_at|timesince}} ago</h5></p>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for post in videostwo reversed %}
+    
+        <div class="product-box">
+            
+            <video src="{{post.main_img.url}}" controls ="controls" height="600px" width="100%" alt="product-img" class="product-img"><br>
+            </video>
+            <div class="videos-text">
+            <p><h4>Shortv:</h4><h5> {{post.details}}</h5></p>
+            <p><h4>User:</h4> <a href="/profile/{{post.user}}">{{post.user}}</a><br> <h4> Posted: </h4><h5>{{post.created_at}}</h5></p>
+            </div>
+        </div>
+        {% endfor %}
+    
+   
+        {% for blog in videosthree %}
+        <div class="product-box">
+            <h5>{{blog.Video_name|truncatewords:7}}</h5>
+            <a href="/blog_read/{{blog.id}}"><img src="{{blog.main_img.url}}" class="product-img"><br>
+            </video></a>
+            <p><h4>User:</h4> <a href="/profile/{{blog.user}}">{{blog.user}}</a> 
+                <h4>Views: </h4>{{blog.no_of_views}}<h4><br> Posted: </h4>{{blog.created_at|timesince}} ago</p>
+        <div class="videodetails"><p>{{blog.details|truncatewords:18}} MORE</p></div>
+        </div>
+        {% endfor %}
+   
+        {% for post in videosfour reversed %}
+    
+        <div class="product-box">
+            <div class="profile-box">
+            <label><h4>Name </h4> {{post.agentname}}</label><br>
+                <div></a>
+                    <div class="profile-pic">
+                        <a href="/socialbook/{{post.agentname}}"><img src="{{post.profileimg.url}}" height="230px" width="100%"/></a>
+                    </div>
+                    <div class="connect1">
+                    <a href="/socialbook/{{post.agentname}}"><h2>FOLLOW</h2></a>
+                    <a href="/socialbook/{{post.agentname}}"><h2>MESSAGE</h2></a>
+                    </div>
+                </div>
+            <label><h4> ABOUT {{post.agentname}} </h4></label><br>
+            <label>{{post.bio}}</label><br>
+            <label><h4> Located in</h4></label>&nbsp;<label> {{ post.location }}</label><br>
+            
+            </div>
+        </div>
+
+    {% endfor %}
+   
+</div>
+</body>
+{% endblock %}

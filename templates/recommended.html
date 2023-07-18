@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block recommendedvideos %}
+<body>
+    <style>
+        body{
+            padding-top: 50px;
+        }
+        h5{
+            color: var(--text-black-700);
+            display: inline;
+        }
+       
+        .product-box{
+            background-color: var(--bg-black-50);
+            width: 97%;
+            padding-bottom: 10px;    
+        }
+        .product-box a:hover{
+            color: rgb(255, 15, 7);
+        }
+        p{
+            color: var(--text-black-700);
+            font-weight: 100;
+        }
+        .videos-text{
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+        .videos-text a{
+            margin-left: 3px;
+            color: var(--skin-color);
+            font-size: 14px;
+            font-weight: 100;
+        }
+        .videos-text a:hover{
+            margin: 10px;
+            color: rgb(6, 31, 116);
+        }
+        .videodetails{
+            height: 40px;
+            overflow: hidden;
+        }
+        .sidebar{
+            margin-top:10px;
+            text-align: left;
+        }
+        #adds img{
+            border-radius: 10px;
+        }
+        .navlogo h1{
+        font-size: 30px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-style: oblique;
+        }
+        h3{
+            text-align: center;
+        }
+    </style>
+<section class="container">
+    <h3>Recommandations are made depending on your subscrptions</h3>
+    <div class="main-section" id="houses">
+    
+    {% for post in feed_lists reversed %}
+    
+        <div class="product-box">
+            
+        <a href="/video_play/{{post.id}}"><video src="{{post.main_img.url}}" controls="controls" height="70%" width="100%" alt="product-img" class="product-img"><br>
+            </video></a>
+            <div class="videos-text">
+            <div class="videodetails"><h4>Video:</h4><h5> {{post.details|truncatewords:15}}</h5></div>
+            <p><h4>User:</h4> <a href="/profile/{{post.user}}">{{post.user}}</a> <h4>Views: </h4><h5>{{post.no_of_views}} </h5><h4><br> Posted: </h4><h5>{{post.created_at|timesince}} ago</h5></p>
+            </div>
+        </div>
+    {% endfor %}
+    {% for post in feed_listss reversed %}
+    
+        <div class="product-box">
+            
+        <a href="/podcast_play/{{post.id}}"><video src="{{post.main_img.url}}" controls="controls" height="70%" width="100%" alt="product-img" class="product-img"><br>
+            </video></a>
+            <div class="videos-text">
+            <div class="videodetails"><h4>Podcast:</h4><h5> {{post.details|truncatewords:15}}</h5></div>
+            <p><h4>User:</h4> <a href="/profile/{{post.user}}">{{post.user}}</a> <h4>Views: </h4><h5>{{post.no_of_views}} </h5><h4><br> Posted: </h4><h5>{{post.created_at|timesince}} ago</h5></p>
+            </div>
+        </div>
+    {% endfor %}
+    {% for post in feed_listz reversed %}
+    
+        <div class="product-box">
+            
+        <a href="/blog_read/{{post.id}}"><img src="{{post.main_img.url}}" height="70%" width="100%" alt="product-img" class="product-img"><br>
+            </a>
+            <div class="videos-text">
+            <div class="videodetails"><h4>Blog:</h4><h5> {{post.details|truncatewords:15}}</h5></div>
+            <p><h4>User:</h4> <a href="/profile/{{post.user}}">{{post.user}}</a> <h4>Views: </h4><h5>{{post.no_of_views}} </h5><h4><br> Posted: </h4><h5>{{post.created_at|timesince}} ago</h5></p>
+            </div>
+        </div>
+    {% endfor %}
+    
+    </div>
+<br/></br/>
+<br/>
+
+{% if venues.has_previous %}
+    <a href="?page=1">&laquo FIRST</a>
+    <a href="?page={{ venues.previous_page_number }}">PREV</a>
+
+{% endif %}
+
+page {{ venues.number }} of {{ venues.paginator.num_pages}}
+
+{% if venues.has_next %}
+
+    <a href="?page={{ venues.next_page_number }}">NEXT</a>
+    <a href="?page={{ venues.paginator.num_pages }}">LAST &raquo</a>
+
+{% endif %}
+
+</section>
+{% endblock %}

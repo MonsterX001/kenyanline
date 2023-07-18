@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" lang="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenyansonline.com</title>
+    <link rel="stylesheet" href="{% static 'styl.css' %}"/>
+    <link rel="stylesheet" href="{% static 'account.css' %}"/>
+    <link rel="stylesheet" href="{% static 'color.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style-switcher.css' %}"/>
+    <link rel="stylesheet" href="{% static 'color2.css' %}" class="alternate-style" title="color-1" disabled>
+    <link rel="stylesheet" href="{% static 'color3.css' %}" class="alternate-style" title="color-2" disabled>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<nav class="navigation">
+    <div id="topnav" >
+        <div class="navbar">
+            <a  href="/" ><div class="navlogo"> <h3>Kenyans</h3><h4>Online</h4> <h1>K O</h1></div></a>
+        </div>
+   
+       </div>  
+    <div id="smallnav">   
+        {% for user in user_profile %}
+        <a id="adds" href="/acc-profile"><img src="{{user.profileimg.url}}" height="22px" width="22px">PROFILE</a>
+        {% endfor %}
+        <button id="linkbtn"><i class="fa fa-share-alt-square" aria-hidden="true"></i></button>
+        <div class="style-switcher">
+            <div class="style-switcher-toggle s-icon">
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="day-night s-icon">
+                <i class="fa fa-sun-o"></i>
+            </div>
+            
+            <h4>Theme Selector</h4>
+            <div class="colors">
+                <span class="color-2" onclick="setActiveStyle('color-1')"></span>
+                <span class="color-3" onclick="setActiveStyle('color-2')"></span>
+                <span class="color-1" onclick="setActiveStyle('color-3')"></span>
+            </div>
+        </div>  
+        <br><br>
+        <form method="POST" action="/search">
+            {% csrf_token %}
+            <input type="search" action="/search" class="search" placeholder="search" name="searched"><button type="submit" class="searchbutton"><i class="fa fa-search" font-size="18px"></i></button>      
+        </form> 
+    </div>
+     
+    <div id="nav1">
+            <div class="navlinks">
+                <a href="/">All-Videos</a>&nbsp;
+                <a href="/recommended">Recommended</a>&nbsp;
+          
+            
+                <a href="/trending">Trending</a>&nbsp;
+                <a href="/podcasts">Podcasts</a>&nbsp;
+
+                <a href="/livechat">Live</a>&nbsp;
+                <a href="/blogs">Blogs</a>&nbsp;
+
+                <a href="/livechat">STATUS</a>&nbsp;
+            
+            
+                <a href="/hookup">Social-book</a>&nbsp;
+           
+                <a href="/shotss">Shots</a>
+                <a href="/terms-policy">Privacy</a>
+                {% for user in user_profile %}
+                <a id="adds" href="/acc-profile"><img src="{{user.profileimg.url}}" height="22px" width="22px">PROFILE</a>&nbsp;
+                {% endfor %}
+
+                <button id="linkbtn"><i class="fa fa-share-alt-square" aria-hidden="true"></i></button>
+                <div class="style-switcher">
+                    <div class="style-switcher-toggle s-icon">
+                        <i class="fa fa-cog"></i>
+                    </div>
+                    <div class="day-night s-icon">
+                        <i class="fa fa-sun-o"></i>
+                    </div>
+                    
+                    <h4>Theme Selector</h4>
+                    <div class="colors">
+                        <span class="color-2" onclick="setActiveStyle('color-1')"></span>
+                        <span class="color-3" onclick="setActiveStyle('color-2')"></span>
+                        <span class="color-1" onclick="setActiveStyle('color-3')"></span>
+                    </div>
+                </div>  
+            </div>
+             <div class="searching"> <form method="POST" action="/search">
+                {% csrf_token %}
+                    <input type="search" action="/search" class="search" placeholder="search" name="searched"><button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>      
+                </form> 
+            </div>  
+    </div> 
+        
+    
+    <label>
+    <a href="logout" height="40px"><i class="fa fa-sign-out" id="btnn">out</i></a>
+    </label>
+
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fa fa-bars" id="btn"></i>
+        <i class="fa fa-times" id="cancel"></i>
+    </label>
+
+<div class="sidebar">
+    
+
+    <header class="navbar"><h3>Kenyans</h3><h4>Online</h4></header>
+
+    <ul>
+        <li><a href="/" ><i class="fa fa-home"></i> All-Videos</a></li>
+        <li><a href="/recommended" ><i class="fa fa-home"></i> Recommended</a></li>
+        <li><a href="/trending" ><i class="fa fa-home"></i> Trending</a></li>
+        <li><a href="/podcast" ><i class="fa fa-home"></i> Podcasts</a></li>
+        <li><a href="/livechat"><i class="fa fa-comments"></i>Live</a></li>
+        <li><a href="/blog"><i class="fa fa-comments"></i>Blogs</a></li>
+        <li><a href="/livechat"><i class="fa fa-comments"></i>STATUS</a></li>
+        <li><a href="/hookup" ><i class="fa fa-address-card"></i> Social-book</a></li>
+        <li><a href="/shotss" ><i class="fa fa-camera-retro"></i> Shots</a></li>
+        <li><a href="/acc-profile"><i class="fa fa-user-circle-o"></i> Profile</a></li>
+        <li><a href="/terms-policy"><i class="fa fa-fa fa-eye-slash"></i> privacy policy</a></li>
+    </ul>
+</div> 
+</nav>             
+<body>
+    
+<style>
+    body{
+        margin-top: 90px;
+    }
+    .main-section{
+        padding: 1px;
+        margin: 1px;
+        width: 80%;
+        float: left;
+        
+    }
+    .add-section{
+        margin-top: 10px;
+        width: 18%;
+        color: rgb(209, 229, 248);
+        background-color: royalblue;
+        height: 100vh;
+        float: right;
+    }
+    footer{
+       
+        width: 100%;
+    }
+    .bl a{
+        width: 48%;
+        padding: 7px;
+        font-size: 18px;
+        color: aliceblue;
+        background: var(--skin-color);
+        right: 10px;
+        top: 82px;
+        text-align: center;
+        position: fixed;
+    }
+    .bll a{
+        width: 48%;
+        padding: 7px;
+        font-size: 18px;
+        color: rgb(255, 255, 255);
+        background: var(--skin-color);
+        left: 10px;
+        top: 82px;
+        text-align: center;
+        position: fixed;
+    }
+    .product-box{
+        padding: 1px;
+        height: 350px;
+        width: 97%;
+        margin: 10px;
+        overflow: hidden;
+    }
+    .product-box img{
+        padding: 1px;
+        height: 60%;
+    }
+    h5{
+        padding: 1px;
+        margin: 1px;
+        text-transform: uppercase;
+        color: var(--skin-color);
+    }
+    @media (max-width:900px){
+        .main-section{
+            width: 100%;
+        }
+        .add-section{
+            width: 100%;
+            height: 250px;
+        }
+    }
+</style>
+<section>
+
+    <div class="bll">
+    <a href="/blog">TRENDING BLOGS</a>
+    </div>
+    <div class="bl">
+    <a href="/blog">WRITE YOUR BLOG</a>
+    </div>
+
+    
+    <div class="main-section">
+        {% for blog in venues %}
+            <div class="product-box">
+                <h5>{{blog.Video_name|truncatewords:7}}</h5>
+                <a href="/blog_read/{{blog.id}}"><img src="{{blog.main_img.url}}" class="product-img"><br>
+                </video></a>
+                <p><h4>User:</h4> <a href="/profile/{{blog.user}}">{{blog.user}}</a> 
+                    <h4>Views: </h4>{{blog.no_of_views}}<h4><br> Posted: </h4>{{blog.created_at|timesince}} ago</p>
+            <div class="videodetails"><p>{{blog.details|truncatewords:18}} MORE</p></div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="add-section">
+        this section is for advertising
+    </div>
+</section>
+<footer>
+    
+    <div id="copywrite"> 
+        <div class="logos">
+            <img src="static/images/logo10.png" height="200px" width="200px">
+        </div> 
+        <div class="text">   
+        <p>UPLOAD VIDEOS AND EARN Ksh 300 PER 1000 VIEWs</p>
+        <p>ALL VIDEOS ARE ALLOWED EXCEPT NUDITY AND EXTREAMISM!!!</p>
+        <p>&copy TalantaHella</p>
+        
+        </div> 
+        <div class="logos1">
+            <img src="static/images/logo10.png" height="200px" width="200px">
+        </div> 
+    </div>
+
+</footer>
+<script src="{% static 'nav.js' %}"></script>
+<script src="{% static 'main.js' %}"></script>
+<script src="{% static 'style-switcher.js' %}"></script>
+
+</body>
+
+</html>
+
